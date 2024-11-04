@@ -1,0 +1,47 @@
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .actions {
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .btn-remover {
+            color: white;
+            background-color: #ff4444;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+        .btn-adicionar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type=text], input[type=date] {
+            width: 200px;
+            padding: 5px;
+            margin-right: 10px;
+        }

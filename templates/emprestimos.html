@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Empréstimos{% endblock %}
+
+{% block content %}
+    <h1>Controle de Empréstimos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Livro</th>
+                <th>Aluno</th>
+                <th>RA</th>
+                <th>Data Empréstimo</th>
+                <th>Data Limite</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emprestimo in emprestimos %}
+            <tr>
+                <td>{{ emprestimo.livro.titulo }}</td>
+                <td>{{ emprestimo.nome_aluno }}</td>
+                <td>{{ emprestimo.ra }}</td>
+                <td>{{ emprestimo.data_emprestimo.strftime('%d/%m/%Y') }}</td>
+                <td>{{ emprestimo.data_limite.strftime('%d/%m/%Y') }}</td>
+                <td>
+                    {% if emprestimo.devolvido %}
+                        <span style="color: green;">Devolvido em {{ emprestimo.data_devolucao.strftime('%d/%m/%Y') }}</span>
+                    {% else %}
+                        {% if emprestimo.data_limite < datetime.now() %}
+                            <span style="color: red;">Atrasado</span>
+                        {% else %}
+                            <span style="color: blue;">Em andamento</span>
+                        {% endif %}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if not emprestimo.devolvido %}
+                        <a href="{{ url_for('devolver_livro', emprestimo_id=emprestimo.id) }}" class="btn btn-success">Registrar Devolução</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
